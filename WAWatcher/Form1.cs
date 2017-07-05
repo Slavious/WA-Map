@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
         private FileSystemWatcher watcher;
         private System.IO.StreamWriter logFile;
         private Boolean running = false;
+        private Boolean soundOn = false;
 
         public WAWatcher()
         {
@@ -135,6 +136,8 @@ namespace WindowsFormsApplication1
                                             ", Y: " + eventParams["playerYCoord"].ToString() + ", Z: " + eventParams["playerZCoord"].ToString();
                             textBox1.AppendText(result + '\n');
                             logFile.WriteLine(result);
+                            if (soundOn)
+                                System.Media.SystemSounds.Asterisk.Play();
                         }
                         startIndex = -1;
                     }
@@ -145,6 +148,11 @@ namespace WindowsFormsApplication1
         private void WAWatcher_FormClosing(object sender, FormClosingEventArgs e)
         {
             logFile.Close();
+        }
+
+        private void chkSound_CheckedChanged(object sender, EventArgs e)
+        {
+            soundOn = chkSound.Checked;
         }
     }
 }
