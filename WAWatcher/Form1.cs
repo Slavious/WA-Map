@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
 
 namespace WindowsFormsApplication1
 {
     public partial class WAWatcher : Form
     {
         private FileSystemWatcher watcher;
-        private System.IO.StreamWriter logFile;
         private Boolean running = false;
         private Boolean soundOn = false;
 
@@ -30,15 +30,12 @@ namespace WindowsFormsApplication1
                 watcher.Path = path;
                 /* Watch for changes in LastAccess and LastWrite times, and 
                    the renaming of files or directories. */
-                watcher.NotifyFilter = NotifyFilters.LastWrite;
+                watcher.NotifyFilter = NotifyFilters.Size;
                 // Only watch text files.
                 watcher.Filter = "";
 
                 // Add event handlers.
                 watcher.Changed += new FileSystemEventHandler(OnChanged);
-
-                // Create a log file
-                logFile = new System.IO.StreamWriter("WAWatcherLog.txt", true);
             }
             else
             {
@@ -63,10 +60,7 @@ namespace WindowsFormsApplication1
                 {
                     using (StreamReader sr = new StreamReader(fs))
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            parseLine(sr.ReadLine());
-                        }
+                        parseLine(sr.ReadToEnd());
                     }
                 }
             }
@@ -82,8 +76,7 @@ namespace WindowsFormsApplication1
             {
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;
-                textBox1.AppendText("Running...\n");
-                logFile.WriteLine("Running...");
+                tbResults.AppendText("Running...\n");
                 btnStart.Text = "Stop";
                 running = true;
             }
@@ -91,8 +84,7 @@ namespace WindowsFormsApplication1
             {
                 // Stop watching.
                 watcher.EnableRaisingEvents = false;
-                textBox1.AppendText("Stopped.\n");
-                logFile.WriteLine("Stopped.");
+                tbResults.AppendText("Stopped.\n");
                 btnStart.Text = "Start";
                 running = false;
             }
@@ -102,7 +94,7 @@ namespace WindowsFormsApplication1
         private void btnClear_Click(object sender, EventArgs e)
         {
             // Clear the text box
-            textBox1.Clear();
+            tbResults.Clear();
         }
 
         private void parseLine(string line)
@@ -126,16 +118,15 @@ namespace WindowsFormsApplication1
                     nestLevel--;
                     if (nestLevel ==0)
                     {
-                        string subString = line.Substring(startIndex, i - startIndex);
+                        string subString = line.Substring(startIndex, i - startIndex + 1);
                         var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
                         var jsonObject = (IDictionary<string, object>)ser.DeserializeObject(subString);
                         if (jsonObject["eventName"].ToString() == "performanceReport")
                         {
                             var eventParams = (IDictionary<string, object>)jsonObject["eventParams"];
-                            string result = "Time: " + jsonObject["eventTimestamp"].ToString() + ", X: " + eventParams["playerXCoord"].ToString() +
-                                            ", Y: " + eventParams["playerYCoord"].ToString() + ", Z: " + eventParams["playerZCoord"].ToString();
-                            textBox1.AppendText(result + '\n');
-                            logFile.WriteLine(result);
+                            string result = "Time: " + jsonObject["eventTimestamp"].ToString() + " X: " + eventParams["playerXCoord"].ToString().Replace(',','.') +
+                                            " Y: " + eventParams["playerYCoord"].ToString().Replace(',', '.') + " Z: " + eventParams["playerZCoord"].ToString().Replace(',', '.');
+                            appendText(result + '\n');
                             if (soundOn)
                                 System.Media.SystemSounds.Asterisk.Play();
                         }
@@ -145,10 +136,20 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void WAWatcher_FormClosing(object sender, FormClosingEventArgs e)
+        private void appendText(string text)
         {
-            logFile.Close();
+            if (this.tbResults.InvokeRequired)
+            {
+                AppendTextCallback d = new AppendTextCallback(appendText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.tbResults.AppendText(text);
+            }
         }
+
+        delegate void AppendTextCallback(string result);
 
         private void chkSound_CheckedChanged(object sender, EventArgs e)
         {

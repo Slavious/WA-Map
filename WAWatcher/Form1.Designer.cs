@@ -29,23 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WAWatcher));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbResults = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.chkSound = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbResults
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(598, 212);
-            this.textBox1.TabIndex = 0;
+            this.tbResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbResults.Location = new System.Drawing.Point(13, 13);
+            this.tbResults.Multiline = true;
+            this.tbResults.Name = "tbResults";
+            this.tbResults.Size = new System.Drawing.Size(559, 211);
+            this.tbResults.TabIndex = 0;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(13, 231);
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStart.Location = new System.Drawing.Point(13, 230);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
@@ -55,18 +59,20 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(580, 231);
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(532, 230);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(31, 23);
+            this.btnClear.Size = new System.Drawing.Size(40, 23);
             this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "clr";
+            this.btnClear.Text = "clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // chkSound
             // 
+            this.chkSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkSound.AutoSize = true;
-            this.chkSound.Location = new System.Drawing.Point(143, 235);
+            this.chkSound.Location = new System.Drawing.Point(94, 234);
             this.chkSound.Name = "chkSound";
             this.chkSound.Size = new System.Drawing.Size(98, 17);
             this.chkSound.TabIndex = 4;
@@ -78,15 +84,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 262);
+            this.ClientSize = new System.Drawing.Size(584, 261);
             this.Controls.Add(this.chkSound);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbResults);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "WAWatcher";
             this.Text = "WAWatcher";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WAWatcher_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,7 +100,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbResults;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.CheckBox chkSound;
