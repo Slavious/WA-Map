@@ -72,27 +72,27 @@ namespace WindowsFormsApplication1
         private void fileChecker()
         {
             // Compare the last modified date of the file, and read if changed
-            DateTime lastModA = new DateTime();
-            DateTime lastModB = new DateTime();
-            DateTime newA = new DateTime();
-            DateTime newB = new DateTime();
+            long lastA = new System.IO.FileInfo(path + "\\a").Length;
+            long lastB = new System.IO.FileInfo(path + "\\b").Length;
+            long newA = new System.IO.FileInfo(path + "\\a").Length;
+            long newB = new System.IO.FileInfo(path + "\\b").Length;
 
             while (threadRunning)
             {
                 mrse.WaitOne();
-                newA = File.GetLastWriteTime(path + "\\a");
-                newB = File.GetLastWriteTime(path + "\\b");
-                if (newA != lastModA)
+                newA = new System.IO.FileInfo(path + "\\a").Length;
+                newB = new System.IO.FileInfo(path + "\\b").Length;
+                if (newA != lastA)
                 {
-                    Console.WriteLine("File: " + path + "\\a was modified.");
+                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": File A size changed to " + newA.ToString() + ".");
                     unlockedRead(path + "\\a");
-                    lastModA = newA;
+                    lastA = newA;
                 }
-                if (newB != lastModB)
+                if (newB != lastB)
                 {
-                    Console.WriteLine("File: " + path + "\\b was modified.");
+                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": File B size changed to " + newB.ToString() + ".");
                     unlockedRead(path + "\\b");
-                    lastModB = newB;
+                    lastB = newB;
                 }
                 Thread.Sleep(1);
             }
@@ -147,6 +147,7 @@ namespace WindowsFormsApplication1
                         var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
                         var jsonObject = (IDictionary<string, object>)ser.DeserializeObject(subString);
                         // Check if this object is a performanceReport
+                        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": Found JSON object with eventName: " + jsonObject["eventName"].ToString() + " and time: " + jsonObject["eventTimestamp"].ToString() + ".");
                         if (jsonObject["eventName"].ToString() == "performanceReport")
                         {   // Parse the performanceReport and build a string with just the timestamp and coordinates
                             // I had to manually convert the decimal signs since these are dynamic objects and formatting does not work on them.
