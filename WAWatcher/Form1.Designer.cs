@@ -84,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 261);
+            this.ClientSize = new System.Drawing.Size(584, 262);
             this.Controls.Add(this.chkSound);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnStart);
@@ -93,6 +93,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "WAWatcher";
             this.Text = "WAWatcher";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WAWatcher_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
