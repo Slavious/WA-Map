@@ -43,6 +43,7 @@
             this.tbResults.Location = new System.Drawing.Point(13, 13);
             this.tbResults.Multiline = true;
             this.tbResults.Name = "tbResults";
+            this.tbResults.ReadOnly = true;
             this.tbResults.Size = new System.Drawing.Size(559, 211);
             this.tbResults.TabIndex = 0;
             // 
