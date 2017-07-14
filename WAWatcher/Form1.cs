@@ -13,7 +13,10 @@ namespace WindowsFormsApplication1
         private Boolean threadRunning = true;
         private Boolean running = false;
         private Boolean soundOn = false;
+        private Boolean loggingOn = false;
         private string path = Environment.GetEnvironmentVariable("UserProfile") + "\\AppData\\LocalLow\\Bossa Studios\\Worlds Adrift\\ddsdk\\events";
+        private string outputpath = Environment.GetEnvironmentVariable("AppData") + "\\WAWatcher";
+        private System.IO.StreamWriter logFile;
 
         public WAWatcher()
         {
@@ -43,6 +46,11 @@ namespace WindowsFormsApplication1
                 btnStart.Text = "Stop";
                 running = true;
 
+                if(loggingOn)
+                {
+                    logFile = new System.IO.StreamWriter(outputpath + "\\log_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".csv");
+                }
+
                 mrse.Set();
             }
             else
@@ -51,6 +59,11 @@ namespace WindowsFormsApplication1
                 tbResults.AppendText("Stopped.\n");
                 btnStart.Text = "Start";
                 running = false;
+
+                if (loggingOn)
+                {
+                    logFile.Close();
+                }
 
                 mrse.Reset();
             }
@@ -67,6 +80,25 @@ namespace WindowsFormsApplication1
         {
             // if enabled, a sound will play on each coordinate found
             soundOn = chkSound.Checked;
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            // Opens the folder that contains the log file
+            System.Diagnostics.Process.Start(@outputpath);
+        }
+
+        private void chkFile_CheckedChanged(object sender, EventArgs e)
+        {
+            // if enabled, a csv file will be created with all the recorded data
+            loggingOn = chkFile.Checked;
+        }
+
+        private void WAWatcher_FormClosed(object sender, FormClosedEventArgs e)
+        {   
+            // Makes sure that the threads are closed
+            threadRunning = false;
+            mrse.Set();
         }
 
         private void fileChecker()
@@ -152,9 +184,18 @@ namespace WindowsFormsApplication1
                         {   // Parse the performanceReport and build a string with just the timestamp and coordinates
                             // I had to manually convert the decimal signs since these are dynamic objects and formatting does not work on them.
                             var eventParams = (IDictionary<string, object>)jsonObject["eventParams"];
-                            string result = "Time: " + jsonObject["eventTimestamp"].ToString() + " X: " + eventParams["playerXCoord"].ToString().Replace(',','.') +
-                                            " Y: " + eventParams["playerYCoord"].ToString().Replace(',', '.') + " Z: " + eventParams["playerZCoord"].ToString().Replace(',', '.');
+                            string timestamp = jsonObject["eventTimestamp"].ToString();
+                            string x = eventParams["playerXCoord"].ToString().Replace(',', '.');
+                            string y = eventParams["playerYCoord"].ToString().Replace(',', '.');
+                            string z = eventParams["playerZCoord"].ToString().Replace(',', '.');
+
+                            string result = "Time: " + timestamp + " X: " + x + " Y: " + y + " Z: " + z;
                             appendText(result + '\n');
+                            if(loggingOn)
+                            {
+                                // Write the string to a file.
+                                logFile.WriteLine(timestamp + ", " + x + ", " + y + ", " + z);
+                            }
                             if (soundOn) // Play a sound if the option is enabled
                                 System.Media.SystemSounds.Asterisk.Play();
                         }
@@ -179,11 +220,5 @@ namespace WindowsFormsApplication1
         }
 
         delegate void AppendTextCallback(string result);
-
-        private void WAWatcher_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            threadRunning = false;
-            mrse.Set();
-        }
     }
 }

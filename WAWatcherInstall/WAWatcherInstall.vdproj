@@ -34,13 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E8939250AD4576711D8AB6433F69160D"
+        "OwnerKey" = "8:_23D2535DC4EB4DFCA5B348C5545881D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_23D2535DC4EB4DFCA5B348C5545881D0"
+        "OwnerKey" = "8:_E8939250AD4576711D8AB6433F69160D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -61,6 +61,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -77,6 +93,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -163,6 +195,28 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_8427FE8EEB904520AA7D340831053232"
+            {
+            "Name" = "8:#1915"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:AppDataFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_25964EC9E42141BA9A9D03AE67E75AFB"
+                    {
+                    "Name" = "8:WAWatcher"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_162BA7A816104A6BAD7BFB1E47A487FC"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_BF7B4A7DC09A4148AC59AA3C1A8E06DA"
             {
             "Name" = "8:#1919"
@@ -213,15 +267,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WAWatcher"
-        "ProductCode" = "8:{2097A792-8580-42AA-9BD2-558F36447AA7}"
-        "PackageCode" = "8:{C7FC079A-82AF-4211-8833-9F52982477BF}"
+        "ProductCode" = "8:{5AD0DF3F-EB30-40C1-A9D2-A720439C6F28}"
+        "PackageCode" = "8:{6572289A-4521-4011-9DFA-7F3DE08C8767}"
         "UpgradeCode" = "8:{9E6BF3C2-48A3-4E35-9441-88BAA2838F4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Jerodar"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -749,7 +803,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_23D2535DC4EB4DFCA5B348C5545881D0"
             {
-            "SourcePath" = "8:..\\WAWatcher\\obj\\Release\\WAWatcher.exe"
+            "SourcePath" = "8:..\\WAWatcher\\obj\\Debug\\WAWatcher.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DBE36300414F47C888F93594B9E509E2"

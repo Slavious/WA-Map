@@ -33,6 +33,8 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.chkSound = new System.Windows.Forms.CheckBox();
+            this.chkFile = new System.Windows.Forms.CheckBox();
+            this.btnOpen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbResults
@@ -81,11 +83,36 @@
             this.chkSound.UseVisualStyleBackColor = true;
             this.chkSound.CheckedChanged += new System.EventHandler(this.chkSound_CheckedChanged);
             // 
+            // chkFile
+            // 
+            this.chkFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkFile.AutoSize = true;
+            this.chkFile.Location = new System.Drawing.Point(198, 234);
+            this.chkFile.Name = "chkFile";
+            this.chkFile.Size = new System.Drawing.Size(79, 17);
+            this.chkFile.TabIndex = 5;
+            this.chkFile.Text = "Write to file";
+            this.chkFile.UseVisualStyleBackColor = true;
+            this.chkFile.CheckedChanged += new System.EventHandler(this.chkFile_CheckedChanged);
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOpen.Location = new System.Drawing.Point(283, 230);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOpen.TabIndex = 6;
+            this.btnOpen.Text = "Open Folder";
+            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
             // WAWatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 262);
+            this.Controls.Add(this.btnOpen);
+            this.Controls.Add(this.chkFile);
             this.Controls.Add(this.chkSound);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnStart);
@@ -106,6 +133,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.CheckBox chkSound;
+        private System.Windows.Forms.CheckBox chkFile;
+        private System.Windows.Forms.Button btnOpen;
     }
 }
 
