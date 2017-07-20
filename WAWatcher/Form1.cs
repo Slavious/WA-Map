@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1
             if (Directory.Exists(path))
             {
                 // Start the worker thread
-                tChecker = new Thread(fileChecker);
+                tChecker = new Thread(FileChecker);
                 tChecker.Start();
             }
             else
@@ -36,7 +36,7 @@ namespace WindowsFormsApplication1
             }
         }
         // UI events
-        private void btnStart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             // Toggle state of start / stop button
             if (!running)
@@ -45,6 +45,7 @@ namespace WindowsFormsApplication1
                 tbResults.AppendText("Running...\n");
                 btnStart.Text = "Stop";
                 running = true;
+                chkFile.Enabled = false;
 
                 if(loggingOn)
                 {
@@ -59,6 +60,7 @@ namespace WindowsFormsApplication1
                 tbResults.AppendText("Stopped.\n");
                 btnStart.Text = "Start";
                 running = false;
+                chkFile.Enabled = true;
 
                 if (loggingOn)
                 {
@@ -70,25 +72,25 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             // Clear the text box
             tbResults.Clear();
         }
 
-        private void chkSound_CheckedChanged(object sender, EventArgs e)
+        private void ChkSound_CheckedChanged(object sender, EventArgs e)
         {
             // if enabled, a sound will play on each coordinate found
             soundOn = chkSound.Checked;
         }
 
-        private void btnOpen_Click(object sender, EventArgs e)
+        private void BtnOpen_Click(object sender, EventArgs e)
         {
             // Opens the folder that contains the log file
             System.Diagnostics.Process.Start(@outputpath);
         }
 
-        private void chkFile_CheckedChanged(object sender, EventArgs e)
+        private void ChkFile_CheckedChanged(object sender, EventArgs e)
         {
             // if enabled, a csv file will be created with all the recorded data
             loggingOn = chkFile.Checked;
@@ -101,7 +103,7 @@ namespace WindowsFormsApplication1
             mrse.Set();
         }
 
-        private void fileChecker()
+        private void FileChecker()
         {
             // Compare the last modified date of the file, and read if changed
             long lastA = new System.IO.FileInfo(path + "\\a").Length;
@@ -117,13 +119,13 @@ namespace WindowsFormsApplication1
                 if (newA != lastA)
                 {
                     Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": File A size changed to " + newA.ToString() + ".");
-                    unlockedRead(path + "\\a");
+                    UnlockedRead(path + "\\a");
                     lastA = newA;
                 }
                 if (newB != lastB)
                 {
                     Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": File B size changed to " + newB.ToString() + ".");
-                    unlockedRead(path + "\\b");
+                    UnlockedRead(path + "\\b");
                     lastB = newB;
                 }
                 Thread.Sleep(1);
@@ -131,7 +133,7 @@ namespace WindowsFormsApplication1
         }
 
         // Other functions
-        private void unlockedRead(string path)
+        private void UnlockedRead(string path)
         {            
             // Open the file without locking it
             try
@@ -143,7 +145,7 @@ namespace WindowsFormsApplication1
                 {
                     using (StreamReader sr = new StreamReader(fs))
                     {
-                        parseLine(sr.ReadToEnd());
+                        ParseLine(sr.ReadToEnd());
                     }
                 }
             }
@@ -153,7 +155,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void parseLine(string line)
+        private void ParseLine(string line)
         {
             // The strings contain a JSON object, however it is surrounded by semi random characters.
             // Find matching top level brackets to find the JSON object.
@@ -190,7 +192,7 @@ namespace WindowsFormsApplication1
                             string z = eventParams["playerZCoord"].ToString().Replace(',', '.');
 
                             string result = "Time: " + timestamp + " X: " + x + " Y: " + y + " Z: " + z;
-                            appendText(result + '\n');
+                            AppendText(result + '\n');
                             if(loggingOn)
                             {
                                 // Write the string to a file.
@@ -206,11 +208,11 @@ namespace WindowsFormsApplication1
         }
 
         // Delegate function to ensure this runs on interface thread
-        private void appendText(string text)
+        private void AppendText(string text)
         {
             if (this.tbResults.InvokeRequired)
             {
-                AppendTextCallback d = new AppendTextCallback(appendText);
+                AppendTextCallback d = new AppendTextCallback(AppendText);
                 this.Invoke(d, new object[] { text });
             }
             else

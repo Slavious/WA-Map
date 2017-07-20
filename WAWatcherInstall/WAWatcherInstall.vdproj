@@ -267,15 +267,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WAWatcher"
-        "ProductCode" = "8:{5AD0DF3F-EB30-40C1-A9D2-A720439C6F28}"
-        "PackageCode" = "8:{6572289A-4521-4011-9DFA-7F3DE08C8767}"
+        "ProductCode" = "8:{A35AE9DF-1667-48B2-AAE0-FC155F7B363D}"
+        "PackageCode" = "8:{87E80958-5715-4CE6-9644-FB1DCDA69B3A}"
         "UpgradeCode" = "8:{9E6BF3C2-48A3-4E35-9441-88BAA2838F4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:Jerodar"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -803,7 +803,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_23D2535DC4EB4DFCA5B348C5545881D0"
             {
-            "SourcePath" = "8:..\\WAWatcher\\obj\\Debug\\WAWatcher.exe"
+            "SourcePath" = "8:..\\WAWatcher\\obj\\Release\\WAWatcher.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DBE36300414F47C888F93594B9E509E2"

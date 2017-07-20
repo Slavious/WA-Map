@@ -58,7 +58,7 @@
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnClear
             // 
@@ -69,7 +69,7 @@
             this.btnClear.TabIndex = 3;
             this.btnClear.Text = "clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // chkSound
             // 
@@ -81,7 +81,7 @@
             this.chkSound.TabIndex = 4;
             this.chkSound.Text = "Enable Sounds";
             this.chkSound.UseVisualStyleBackColor = true;
-            this.chkSound.CheckedChanged += new System.EventHandler(this.chkSound_CheckedChanged);
+            this.chkSound.CheckedChanged += new System.EventHandler(this.ChkSound_CheckedChanged);
             // 
             // chkFile
             // 
@@ -93,7 +93,7 @@
             this.chkFile.TabIndex = 5;
             this.chkFile.Text = "Write to file";
             this.chkFile.UseVisualStyleBackColor = true;
-            this.chkFile.CheckedChanged += new System.EventHandler(this.chkFile_CheckedChanged);
+            this.chkFile.CheckedChanged += new System.EventHandler(this.ChkFile_CheckedChanged);
             // 
             // btnOpen
             // 
@@ -104,7 +104,7 @@
             this.btnOpen.TabIndex = 6;
             this.btnOpen.Text = "Open Folder";
             this.btnOpen.UseVisualStyleBackColor = true;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            this.btnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
             // WAWatcher
             // 
