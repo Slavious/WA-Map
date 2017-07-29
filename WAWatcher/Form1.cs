@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1
         public WAWatcher()
         {
             InitializeComponent();
+            lblVersion.Text = Application.ProductVersion;
 
             if (Directory.Exists(path))
             {

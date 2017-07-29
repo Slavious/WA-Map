@@ -35,6 +35,7 @@
             this.chkSound = new System.Windows.Forms.CheckBox();
             this.chkFile = new System.Windows.Forms.CheckBox();
             this.btnOpen = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbResults
@@ -106,11 +107,23 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblVersion.Location = new System.Drawing.Point(491, 235);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(35, 13);
+            this.lblVersion.TabIndex = 7;
+            this.lblVersion.Text = "Vx.x.x";
+            // 
             // WAWatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 262);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.chkFile);
             this.Controls.Add(this.chkSound);
@@ -135,6 +148,7 @@
         private System.Windows.Forms.CheckBox chkSound;
         private System.Windows.Forms.CheckBox chkFile;
         private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 
