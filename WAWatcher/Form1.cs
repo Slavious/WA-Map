@@ -176,32 +176,40 @@ namespace WindowsFormsApplication1
                     nestLevel--;
                     if (nestLevel ==0)
                     {
-                        string subString = line.Substring(startIndex, i - startIndex + 1);
-                        // Deserialise the JSON object within these brackets
-                        var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
-                        var jsonObject = (IDictionary<string, object>)ser.DeserializeObject(subString);
-                        // Check if this object is a performanceReport
-                        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": Found JSON object with eventName: " + jsonObject["eventName"].ToString() + " and time: " + jsonObject["eventTimestamp"].ToString() + ".");
-                        if (jsonObject["eventName"].ToString() == "performanceReport")
-                        {   // Parse the performanceReport and build a string with just the timestamp and coordinates
-                            // I had to manually convert the decimal signs since these are dynamic objects and formatting does not work on them.
-                            var eventParams = (IDictionary<string, object>)jsonObject["eventParams"];
-                            string timestamp = jsonObject["eventTimestamp"].ToString();
-                            string x = eventParams["playerXCoord"].ToString().Replace(',', '.');
-                            string y = eventParams["playerYCoord"].ToString().Replace(',', '.');
-                            string z = eventParams["playerZCoord"].ToString().Replace(',', '.');
+                        try
+                        {
+                            string subString = line.Substring(startIndex, i - startIndex + 1);
+                            // Deserialise the JSON object within these brackets
+                            var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
+                            var jsonObject = (IDictionary<string, object>)ser.DeserializeObject(subString);
+                          
+                            // Check if this object is a performanceReport
+                            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.ff") + ": Found JSON object with eventName: " + jsonObject["eventName"].ToString() + " and time: " + jsonObject["eventTimestamp"].ToString() + ".");
+                            if (jsonObject["eventName"].ToString() == "performanceReport")
+                            {   // Parse the performanceReport and build a string with just the timestamp and coordinates
+                                // I had to manually convert the decimal signs since these are dynamic objects and formatting does not work on them.
+                                var eventParams = (IDictionary<string, object>)jsonObject["eventParams"];
+                                string timestamp = jsonObject["eventTimestamp"].ToString();
+                                string x = eventParams["playerXCoord"].ToString().Replace(',', '.');
+                                string y = eventParams["playerYCoord"].ToString().Replace(',', '.');
+                                string z = eventParams["playerZCoord"].ToString().Replace(',', '.');
 
-                            string result = "Time: " + timestamp + " X: " + x + " Y: " + y + " Z: " + z;
-                            AppendText(result + '\n');
-                            if(loggingOn)
-                            {
-                                // Write the string to a file.
-                                logFile.WriteLine(timestamp + ", " + x + ", " + y + ", " + z);
+                                string result = "Time: " + timestamp + " X: " + x + " Y: " + y + " Z: " + z;
+                                AppendText(result + '\n');
+                                if(loggingOn)
+                                {
+                                    // Write the string to a file.
+                                    logFile.WriteLine(timestamp + ", " + x + ", " + y + ", " + z);
+                                }
+                                if (soundOn) // Play a sound if the option is enabled
+                                    System.Media.SystemSounds.Asterisk.Play();
                             }
-                            if (soundOn) // Play a sound if the option is enabled
-                                System.Media.SystemSounds.Asterisk.Play();
+                            startIndex = -1;
                         }
-                        startIndex = -1;
+                            catch (System.ArgumentException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
             }
