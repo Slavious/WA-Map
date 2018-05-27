@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::WA_Map.Properties.Resources.ss__2018_05_23_at_08_12_31_;
+            this.BackgroundImage = global::WA_Map.Properties.Resources.ss__2018_05_27_at_03_33_37_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(694, 675);
             this.Controls.Add(this.pictureBox1);

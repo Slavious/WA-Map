@@ -63,26 +63,6 @@ namespace WA_Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _15080266810530 {
-            get {
-                object obj = ResourceManager.GetObject("15080266810530", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _15185356990730s {
-            get {
-                object obj = ResourceManager.GetObject("15185356990730s", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap _59032f6a1d07b15bb4713687 {
             get {
                 object obj = ResourceManager.GetObject("59032f6a1d07b15bb4713687", resourceCulture);
@@ -93,29 +73,9 @@ namespace WA_Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ss__2018_05_03_at_07_09_15___1_ {
+        internal static System.Drawing.Bitmap ss__2018_05_27_at_03_33_37_ {
             get {
-                object obj = ResourceManager.GetObject("ss+(2018-05-03+at+07.09.15) (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ss__2018_05_22_at_03_40_01_ {
-            get {
-                object obj = ResourceManager.GetObject("ss+(2018-05-22+at+03.40.01)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ss__2018_05_23_at_08_12_31_ {
-            get {
-                object obj = ResourceManager.GetObject("ss+(2018-05-23+at+08.12.31)", resourceCulture);
+                object obj = ResourceManager.GetObject("ss+(2018-05-27+at+03.33.37)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

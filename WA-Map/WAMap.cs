@@ -16,18 +16,15 @@ namespace WA_Map
     {
 
         private Thread tChecker;
-       // private ManualResetEvent mrse = new ManualResetEvent(false);
         private Boolean threadRunning = true;
         private string path = Environment.GetEnvironmentVariable("UserProfile") + "\\AppData\\LocalLow\\Bossa Studios\\Worlds Adrift\\ddsdk\\events";
         private string outputpath = Environment.GetEnvironmentVariable("AppData") + "\\WAWatcher";
-        private System.IO.StreamWriter logFile;
         public int gX = 0;
         public int gY = 0;
       
 
         public WAMap()
         {
-            
             InitializeComponent();
             timer1.Start();
 
@@ -36,6 +33,7 @@ namespace WA_Map
                 // Start the worker thread
                 tChecker = new Thread(FileChecker);
                 tChecker.Start();
+                tChecker.IsBackground = true;
             }
             else
             {
@@ -137,8 +135,7 @@ namespace WA_Map
                                 string z = eventParams["playerZCoord"].ToString();
                                 if (x != null) gX = (int)float.Parse(x);
                                 if (z != null) gY = (int)float.Parse(z);
-                                //string result = "Time: " + timestamp + " X: " + x + " Y: " + y + " Z: " + z;
-                                //AppendText(result + '\n');
+                             
                              }
                             startIndex = -1;
                         }
@@ -150,34 +147,14 @@ namespace WA_Map
                 }
             }
         }
-
-
-        /*private void button1_Click(object sender, EventArgs e)
-        {
-            if (!Mark)
-            {
-                pictureBox1.Visible = true;
-                Mark = true;
-            }
-            if (Mark)
-            {
-               pictureBox1.Location = new Point(Convert.ToInt32(this.Width / 2 + (float.Parse(Map.gX) * this.Width)/
-                    36000),
-
-                    Convert.ToInt32(this.Height-(this.Height/2+(float.Parse(Map.gY) * this.Height) /
-                    36000)));
-                
-            }
-        }
-        */
-
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
 
             pictureBox1.Location = new Point(
                 (this.ClientRectangle.Width / 2 + (gX * this.ClientRectangle.Width / 36000)-10),
-                //(this.Height - (this.Height / 2 + (Map.gY * this.Height / 36000))));
                 (this.ClientRectangle.Height / 2 - (gY * this.ClientRectangle.Height / 36000)-10));
         }
-    }
+
+   }
 }

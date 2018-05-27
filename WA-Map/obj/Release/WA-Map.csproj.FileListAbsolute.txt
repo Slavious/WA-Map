@@ -7,3 +7,7 @@ C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\W
 C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\WA-Map.exe
 C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\WA-Map.pdb
 C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\WA-Map.csprojResolveAssemblyReference.cache
+C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\bin\Release\WA-Map.exe.manifest
+C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\bin\Release\WA-Map.application
+C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\WA-Map.exe.manifest
+C:\Users\cobra\Documents\Visual Studio 2015\Projects\WA-Map\WA-Map\obj\Release\WA-Map.application
